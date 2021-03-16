@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] float damage = 10f;
+    [SerializeField] int damage = 10;
     [SerializeField] float range = 100f;
     [SerializeField] float fireRate = 15;
 
