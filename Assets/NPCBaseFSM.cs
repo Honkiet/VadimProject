@@ -15,7 +15,11 @@ public class NPCBaseFSM : StateMachineBehaviour
 	public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
 		NPC = animator.gameObject;
-		opponent = NPC.GetComponent<Turret>().GetPlayer();
+        if (NPC.GetComponent<Turret>().tank.gameObject)
+        {
+			opponent = NPC.GetComponent<Turret>().tank.gameObject;
+		}
+		
 		agent = NPC.GetComponent<UnityEngine.AI.NavMeshAgent>();
 	}
 }

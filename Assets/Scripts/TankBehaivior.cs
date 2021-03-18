@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TankBehaivior : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class TankBehaivior : MonoBehaviour
     [SerializeField] Mover mover;
     [SerializeField] float waypointTolerance = 1f;
     [SerializeField] float waypointDwellTime = 3f;
+    [SerializeField] HealthBar healthBar;
+
+    [SerializeField] int maxHealth = 100;
+    [SerializeField] int currentHealth;
 
 
     Vector3 guardPosition;
@@ -20,6 +25,8 @@ public class TankBehaivior : MonoBehaviour
     private void Start()
     {
 
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
         guardPosition = transform.position;
     }
 
@@ -27,7 +34,15 @@ public class TankBehaivior : MonoBehaviour
     {
         PatrolBehaviour();
 
-
+        if(currentHealth < 40)
+        {
+            this.GetComponent<NavMeshAgent>().speed = 0;
+        }
+        else
+        {
+            this.GetComponent<NavMeshAgent>().speed = 3.5f;
+        }
+        
         UpdateTimers();
     }
 
@@ -70,6 +85,36 @@ public class TankBehaivior : MonoBehaviour
     private Vector3 GetCurrentWaypoint()
     {
         return patrolPath.GetWaypoint(currentWaypointIndex);
+    }
+
+    public void TakeDamage(int amount)
+    {
+        currentHealth = Mathf.Max(currentHealth - amount, 0);
+        healthBar.SetHealth(currentHealth);
+        if (currentHealth == 0)
+        {
+            Die();
+        }
+    }
+
+    public void Heal()
+    {
+        currentHealth = Mathf.Min(currentHealth + 10, maxHealth);
+        healthBar.SetHealth(currentHealth);
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "bullet")
+        {
+            TakeDamage(10);
+        }
+        
     }
 
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet1 : MonoBehaviour
 {
     //[SerializeField] GameObject explosion;
-    [SerializeField] int dmg;
+    [SerializeField] int dmg = 10;
 
 
     void OnCollisionEnter(Collision col)
@@ -14,6 +14,14 @@ public class Bullet1 : MonoBehaviour
 
         //GameObject explosionEffect = Instantiate(explosion, this.transform.position, Quaternion.identity);
         //Destroy(explosionEffect, 2f);
+        if(col.gameObject.tag == "tank" )
+        {
+            col.gameObject.GetComponent<TankBehaivior>().TakeDamage(dmg);
+        }
+        else if(col.gameObject.tag == "player")
+        {
+
+        }
 
         Destroy(this.gameObject);
     }
