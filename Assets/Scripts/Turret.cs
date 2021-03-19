@@ -12,7 +12,6 @@ public class Turret : MonoBehaviour
 	[SerializeField] int maxHealth = 100;
 	[SerializeField] int currentHealth;
 	[SerializeField] float shootdistance = 5f;
-	[SerializeField] float fireRate = 15;
 	[SerializeField] HealthBar healthBar;
 	private float nextTimeToFire = 0f;
 

@@ -14,14 +14,14 @@ public class Bullet1 : MonoBehaviour
 
         //GameObject explosionEffect = Instantiate(explosion, this.transform.position, Quaternion.identity);
         //Destroy(explosionEffect, 2f);
-        if(col.gameObject.tag == "tank" )
-        {
-            col.gameObject.GetComponent<TankBehaivior>().TakeDamage(dmg);
-        }
-        else if(col.gameObject.tag == "player")
-        {
+        //if(col.gameObject.tag == "tank" )
+        //{
+        //    col.gameObject.GetComponent<TankBehaivior>().TakeDamage(dmg);
+        //}
+        //else if(col.gameObject.tag == "player")
+        //{
 
-        }
+        //}
 
         Destroy(this.gameObject);
     }

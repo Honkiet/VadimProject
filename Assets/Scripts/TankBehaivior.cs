@@ -13,7 +13,7 @@ public class TankBehaivior : MonoBehaviour
     [SerializeField] float waypointDwellTime = 3f;
     [SerializeField] HealthBar healthBar;
 
-    [SerializeField] int maxHealth = 100;
+    [SerializeField] int maxHealth = 300;
     [SerializeField] int currentHealth;
 
 
@@ -91,10 +91,10 @@ public class TankBehaivior : MonoBehaviour
     {
         currentHealth = Mathf.Max(currentHealth - amount, 0);
         healthBar.SetHealth(currentHealth);
-        if (currentHealth == 0)
-        {
-            Die();
-        }
+        //if (currentHealth == 0)
+        //{
+            
+        //}
     }
 
     public void Heal()
@@ -103,10 +103,10 @@ public class TankBehaivior : MonoBehaviour
         healthBar.SetHealth(currentHealth);
     }
 
-    private void Die()
-    {
-        Destroy(gameObject);
-    }
+    //private void Die()
+    //{
+    //    Destroy(gameObject);
+    //}
 
     private void OnCollisionEnter(Collision collision)
     {

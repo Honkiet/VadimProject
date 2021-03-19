@@ -6,12 +6,11 @@ public class RepairScript : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] int damage = -10;
-    [SerializeField] float range = 6f;
+    [SerializeField] float range = 4f;
     [SerializeField] float fireRate = 15;
 
     [SerializeField] Camera fpsCam;
 
-    private float nextTimeToFire = 0f;
     // Update is called once per frame
     void Update()
     {
