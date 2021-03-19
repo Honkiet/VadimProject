@@ -20,7 +20,7 @@ public class RepairScript : MonoBehaviour
         //    Shoot();  
         //}
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown("e") )
         {
             Shoot();
         }
