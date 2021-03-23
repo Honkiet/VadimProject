@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DaniMove : MonoBehaviour
 {
@@ -48,6 +49,11 @@ public class DaniMove : MonoBehaviour
     private Vector3 normalVector = Vector3.up;
     private Vector3 wallNormalVector;
 
+
+    [SerializeField] int maxHealth = 100;
+    [SerializeField] int currentHealth;
+    [SerializeField] HealthBar healthBar;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -55,12 +61,35 @@ public class DaniMove : MonoBehaviour
 
     void Start()
     {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
         playerScale = transform.localScale;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
+    public void TakeDamage(int amount)
+    {
+        currentHealth = Mathf.Max(currentHealth - amount, 0);
+        healthBar.SetHealth(currentHealth);
+        if (currentHealth == 0)
+        {
+            Die();
+        }
+    }
 
+    private void Die()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "bullet")
+        {
+            TakeDamage(10);
+        }
+    }
     private void FixedUpdate()
     {
         Movement();

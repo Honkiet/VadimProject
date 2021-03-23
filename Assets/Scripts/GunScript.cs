@@ -42,6 +42,7 @@ public class GunScript : MonoBehaviour
                 turret.TakeDamage(damage);
             }
 
+           
         }
     }
 }

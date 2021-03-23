@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class TankBehaivior : MonoBehaviour
 {
@@ -114,7 +115,18 @@ public class TankBehaivior : MonoBehaviour
         {
             TakeDamage(10);
         }
-        
+        if (collision.gameObject.tag == "goal")
+        {
+            SceneManager.LoadScene(2);
+        }
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.gameObject.tag == "goal")
+    //    {
+    //        SceneManager.LoadScene(2);
+    //    }
+    //}
 
 }

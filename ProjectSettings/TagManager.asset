@@ -6,6 +6,8 @@ TagManager:
   tags:
   - tank
   - bullet
+  - piece
+  - goal
   layers:
   - Default
   - TransparentFX
