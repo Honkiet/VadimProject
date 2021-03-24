@@ -21,7 +21,7 @@ public class TankBehaivior : MonoBehaviour
     Vector3 guardPosition;
 
     float timeSinceArrivedAtWaypoint = Mathf.Infinity;
-    int currentWaypointIndex = 0;
+    public int currentWaypointIndex = 0;
 
     private void Start()
     {
@@ -70,12 +70,18 @@ public class TankBehaivior : MonoBehaviour
         {
             mover.StartMoveAction(nextPosition);
         }
+
+        if (currentWaypointIndex == 5)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 
     private bool AtWaypoint()
     {
         float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWaypoint());
         return distanceToWaypoint < waypointTolerance;
+        
     }
 
     private void CycleWaypoint()
