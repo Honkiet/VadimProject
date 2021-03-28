@@ -17,7 +17,6 @@ public class TankBehaivior : MonoBehaviour
     [SerializeField] int maxHealth = 300;
     [SerializeField] int currentHealth;
 
-
     Vector3 guardPosition;
 
     float timeSinceArrivedAtWaypoint = Mathf.Infinity;
@@ -42,6 +41,7 @@ public class TankBehaivior : MonoBehaviour
         else
         {
             this.GetComponent<NavMeshAgent>().speed = 3.5f;
+
         }
         
         UpdateTimers();
@@ -71,7 +71,7 @@ public class TankBehaivior : MonoBehaviour
             mover.StartMoveAction(nextPosition);
         }
 
-        if (currentWaypointIndex == 5)
+        if (currentWaypointIndex == 14)
         {
             SceneManager.LoadScene(2);
         }

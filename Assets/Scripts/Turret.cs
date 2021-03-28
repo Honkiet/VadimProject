@@ -15,6 +15,7 @@ public class Turret : MonoBehaviour
 	[SerializeField] HealthBar healthBar;
 	private float nextTimeToFire = 0f;
 
+	[SerializeField] ParticleSystem muzzleflash;
 	public GameObject player;
 	Animator anim;
 	public GameObject bullet;
@@ -79,6 +80,7 @@ public class Turret : MonoBehaviour
 
 	void Fire()
 	{
+		muzzleflash.Play();
 		GameObject b = Instantiate(bullet, firepoint.transform.position, firepoint.transform.rotation);
 		b.GetComponent<Rigidbody>().AddForce(firepoint.transform.forward * 5000);
 	}

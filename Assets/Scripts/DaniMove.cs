@@ -53,6 +53,7 @@ public class DaniMove : MonoBehaviour
     [SerializeField] int maxHealth = 100;
     [SerializeField] int currentHealth;
     [SerializeField] HealthBar healthBar;
+    [SerializeField] GameObject tank;
 
     void Awake()
     {
@@ -83,6 +84,7 @@ public class DaniMove : MonoBehaviour
         SceneManager.LoadScene(3);
     }
 
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "bullet")
@@ -99,6 +101,10 @@ public class DaniMove : MonoBehaviour
     {
         MyInput();
         Look();
+        if (Vector3.Distance(tank.transform.position, transform.position) > 50f)
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
     /// <summary>
